@@ -1,3 +1,18 @@
+/**
+ * Test Scenario
+ *
+ * - Users thunks:
+ *   1. Should dispatch action and return users when API call succeeds
+ *      - Arrange: Mock successful API response and prepare dispatch
+ *      - Act: Call asyncGetAllUsers
+ *      - Assert: Verify API called and action dispatched with users data
+ *
+ *   2. Should handle error when API call fails
+ *      - Arrange: Mock API rejection and prepare dispatch
+ *      - Act: Call asyncGetAllUsers
+ *      - Assert: Verify error handling (alert called)
+ */
+
 import { describe, test, expect, vi, beforeEach } from 'vitest';
 import { asyncGetAllUsers } from './thunk';
 import api from '../../utils/api';

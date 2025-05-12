@@ -1,3 +1,39 @@
+/**
+ * Test Scenario
+ *
+ * - Threads thunks:
+ *   1. asyncGetAllThreads:
+ *      - Should dispatch action and return threads when API call succeeds
+ *        - Arrange: Mock successful API response and prepare dispatch
+ *        - Act: Call asyncGetAllThreads
+ *        - Assert: Verify API called and action dispatched with threads data
+ *
+ *      - Should handle error when API call fails
+ *        - Arrange: Mock API rejection and prepare dispatch
+ *        - Act: Call asyncGetAllThreads
+ *        - Assert: Verify error handling (alert called)
+ *
+ *   2. asyncCreateThread:
+ *      - Should dispatch actions correctly when creating thread succeeds
+ *        - Arrange: Mock successful API response and prepare dispatch and navigate function
+ *        - Act: Call asyncCreateThread with thread data
+ *        - Assert: Verify loading actions, API called, thread added, and navigation triggered
+ *
+ *      - Should handle error when creating thread fails
+ *        - Arrange: Mock API rejection and prepare dispatch
+ *        - Act: Call asyncCreateThread with thread data
+ *        - Assert: Verify loading actions and error handling
+ *
+ *   3. Thread Vote Thunks:
+ *      - asyncToggleUpVote / asyncToggleDownVote:
+ *        - Should dispatch correct actions when voting succeeds
+ *        - Should handle error when voting fails
+ *
+ *      - asyncNeutralizeUpVote / asyncNeutralizeDownVote:
+ *        - Should dispatch correct actions when neutralizing vote succeeds
+ *        - Should handle error when neutralizing vote fails
+ */
+
 import { describe, test, expect, vi, beforeEach } from 'vitest';
 import {
   asyncGetAllThreads,

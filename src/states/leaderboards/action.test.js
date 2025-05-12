@@ -1,3 +1,13 @@
+/**
+ * Test Scenario
+ *
+ * - Leaderboards actions:
+ *   1. Should create an action to receive leaderboards
+ *      - Arrange: Create sample leaderboard data
+ *      - Act: Call receiveLeaderboards with the sample data
+ *      - Assert: Verify action has correct type and payload
+ */
+
 import { describe, test, expect } from 'vitest';
 import { ActionType, receiveLeaderboards } from './action';
 

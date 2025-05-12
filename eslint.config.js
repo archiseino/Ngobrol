@@ -7,8 +7,46 @@ import pluginCypress from 'eslint-plugin-cypress';
 import prettierConfig from 'eslint-config-prettier';
 
 export default [
-  pluginCypress.configs.recommended,
-  { ignores: ['dist'] },
+  {
+    files: ['cypress/**/*.{js,jsx}', 'cypress.config.js'],
+    plugins: {
+      cypress: pluginCypress,
+    },
+    // Extract the rules from the recommended config
+    rules: {
+      ...(pluginCypress.configs.recommended.rules || {}),
+      // Disable no-undef for Cypress files since Cypress adds globals
+      'no-undef': 'off',
+      // Allow unused expressions for chai assertions
+      'no-unused-expressions': 'off',
+    },
+    // Add cypress globals if needed
+    languageOptions: {
+      globals: {
+        ...globals.browser,
+        ...(pluginCypress.environments?.cypress?.globals || {}),
+        // Explicitly add Cypress globals
+        cy: 'readonly',
+        Cypress: 'readonly',
+        describe: 'readonly',
+        context: 'readonly',
+        beforeEach: 'readonly',
+        afterEach: 'readonly',
+        it: 'readonly',
+        expect: 'readonly',
+      },
+    },
+  },
+  {
+    ignores: [
+      'dist',
+      'node_modules',
+      'build',
+      'coverage',
+      'cypress/reports',
+      '**/*.min.js',
+    ],
+  },
   {
     files: ['**/*.{js,jsx}'],
     languageOptions: {

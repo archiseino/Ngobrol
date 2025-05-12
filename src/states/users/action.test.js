@@ -1,3 +1,13 @@
+/**
+ * Test Scenario
+ *
+ * - Users actions:
+ *   1. Should create an action to receive users
+ *      - Arrange: Create sample users data
+ *      - Act: Call receiveUsers with the sample data
+ *      - Assert: Verify action has correct type and payload
+ */
+
 import { describe, test, expect } from 'vitest';
 import { ActionType, receiveUsers } from './action';
 
@@ -10,16 +20,16 @@ describe('Users actions', () => {
           id: 'user-1',
           name: 'John Doe',
           email: 'john@example.com',
-          avatar: 'https://generated-image-url.jpg'
+          avatar: 'https://generated-image-url.jpg',
         },
         {
           id: 'user-2',
           name: 'Jane Smith',
           email: 'jane@example.com',
-          avatar: 'https://generated-image-url.jpg'
-        }
+          avatar: 'https://generated-image-url.jpg',
+        },
       ];
-      
+
       // Act
       const action = receiveUsers(users);
 
@@ -27,8 +37,8 @@ describe('Users actions', () => {
       expect(action).toEqual({
         type: ActionType.RECEIVE_USERS,
         payload: {
-          users
-        }
+          users,
+        },
       });
     });
   });

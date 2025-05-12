@@ -1,3 +1,18 @@
+/**
+ * Test Scenario
+ *
+ * - Leaderboards reducer:
+ *   1. Should return the initial state when no action is provided
+ *      - Arrange: No initial state (undefined)
+ *      - Act: Call reducer with undefined state and empty action
+ *      - Assert: Verify initial state is an empty array
+ *
+ *   2. Should handle RECEIVE_LEADERBOARDS action correctly
+ *      - Arrange: Initial state (empty array) and sample leaderboard data
+ *      - Act: Call reducer with RECEIVE_LEADERBOARDS action containing leaderboard data
+ *      - Assert: Verify state contains the leaderboard data
+ */
+
 import { describe, test, expect } from 'vitest';
 import usersReducer from './reducer';
 import { ActionType } from './action';

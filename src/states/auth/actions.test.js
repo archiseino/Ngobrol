@@ -1,3 +1,33 @@
+/**
+ * Test Scenario
+ *
+ * - Auth Reducer:
+ *   1. Should return the initial state when given undefined state
+ *      - Arrange: No initial state (undefined)
+ *      - Act: Call authReducer with undefined state and empty action
+ *      - Assert: Verify default initial state is returned
+ *
+ *   2. Should handle SET_AUTH_USER action
+ *      - Arrange: Initial state with null user and an error
+ *      - Act: Call authReducer with SET_AUTH_USER action and user payload
+ *      - Assert: Verify user is updated and error is cleared
+ *
+ *   3. Should handle UNSET_AUTH_USER action
+ *      - Arrange: Initial state with a user object
+ *      - Act: Call authReducer with UNSET_AUTH_USER action
+ *      - Assert: Verify user is set to null
+ *
+ *   4. Should handle SET_AUTH_ERROR action
+ *      - Arrange: Initial state with null error
+ *      - Act: Call authReducer with SET_AUTH_ERROR action and error payload
+ *      - Assert: Verify error is updated with provided error message
+ *
+ *   5. Should return current state for unknown action
+ *      - Arrange: Current state with user data
+ *      - Act: Call authReducer with an unknown action type
+ *      - Assert: Verify state is unchanged
+ */
+
 import { describe, it, expect } from 'vitest';
 import authReducer from './reducer';
 import { ActionType } from './actions';
