@@ -1,3 +1,23 @@
+/**
+ * Test Scenario
+ *
+ * - preloadReducer:
+ *   1. Should return the initial state when no action is provided
+ *      - Arrange: No initial state (undefined)
+ *      - Act: Call reducer with undefined state and empty action
+ *      - Assert: Verify initial state is true
+ *
+ *   2. Should handle SET_PRELOAD action correctly when set to false
+ *      - Arrange: Initial state is true
+ *      - Act: Call reducer with SET_PRELOAD action and false payload
+ *      - Assert: Verify state is updated to false
+ *
+ *   3. Should handle SET_PRELOAD action correctly when set to true
+ *      - Arrange: Initial state is false
+ *      - Act: Call reducer with SET_PRELOAD action and true payload
+ *      - Assert: Verify state is updated to true
+ */
+
 import { describe, test, expect } from 'vitest';
 import preloadReducer from './reducer';
 import { ActionType } from './action';

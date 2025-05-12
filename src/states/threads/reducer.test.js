@@ -1,3 +1,38 @@
+/**
+ * Test Scenario
+ *
+ * - threadsReducer:
+ *   1. Should return the initial state when no action is provided
+ *      - Arrange: Expect initial state to be empty array
+ *      - Act: Call reducer with undefined state and empty action
+ *      - Assert: Verify empty array is returned
+ *
+ *   2. Should handle RECEIVE_THREADS action correctly
+ *      - Arrange: Create sample threads and initial state
+ *      - Act: Call reducer with RECEIVE_THREADS action
+ *      - Assert: Verify threads are added to state
+ *
+ *   3. Should handle ADD_THREAD action correctly
+ *      - Arrange: Create sample thread and initial state with existing threads
+ *      - Act: Call reducer with ADD_THREAD action
+ *      - Assert: Verify new thread is added at the beginning of state array
+ *
+ *   4. Should handle TOGGLE_UP_VOTE_THREAD action correctly for different scenarios:
+ *      - When user has not voted on the thread
+ *      - When user has already upvoted the thread
+ *      - When user has previously downvoted the thread
+ *
+ *   5. Should handle TOGGLE_DOWN_VOTE_THREAD action correctly for different scenarios:
+ *      - When user has not voted on the thread
+ *      - When user has already downvoted the thread
+ *      - When user has previously upvoted the thread
+ *
+ *   6. Should handle TOGGLE_NEUTRAL_VOTE_THREAD action correctly for different scenarios:
+ *      - When user has upvoted the thread
+ *      - When user has downvoted the thread
+ *      - When user has not voted on the thread
+ */
+
 import { describe, test, expect } from 'vitest';
 import threadsReducer from './reducer';
 import { ActionType } from './action';

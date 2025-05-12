@@ -1,3 +1,42 @@
+/**
+ * Test Scenario
+ *
+ * - Thread Detail Thunks:
+ *   1. asyncGetThreadDetail:
+ *      - Should dispatch actions correctly when getting thread detail succeeds
+ *        - Arrange: Mock successful API response and prepare dispatch
+ *        - Act: Call asyncGetThreadDetail with thread ID
+ *        - Assert: Verify loading actions, API called, and thread detail action dispatched
+ *
+ *      - Should handle error when getting thread detail fails
+ *        - Arrange: Mock API rejection and prepare dispatch
+ *        - Act: Call asyncGetThreadDetail with thread ID
+ *        - Assert: Verify loading actions, error handling, and alert called
+ *
+ *   2. Thread Vote Thunks:
+ *      - asyncUpVoteThread:
+ *        - Should dispatch correct actions when upvoting thread succeeds
+ *        - Should handle error when upvoting thread fails
+ *
+ *      - asyncDownVoteThread:
+ *        - Should dispatch correct actions when downvoting thread succeeds
+ *        - Should handle error when downvoting thread fails
+ *
+ *      - asyncNeutralVoteThread:
+ *        - Should dispatch correct actions when neutralizing thread vote succeeds
+ *        - Should handle error when neutralizing thread vote fails
+ *
+ *   3. Comment Thunks:
+ *      - asyncAddComment:
+ *        - Should dispatch correct actions when adding comment succeeds
+ *        - Should handle error when adding comment fails
+ *
+ *      - Comment Vote Thunks:
+ *        - asyncUpvoteComment / asyncDownvoteComment / asyncNeutralVoteComment:
+ *          - Should dispatch correct actions when voting on comment succeeds
+ *          - Should handle error when voting on comment fails
+ */
+
 import { describe, test, expect, vi, beforeEach } from 'vitest';
 import {
   asyncGetThreadDetail,

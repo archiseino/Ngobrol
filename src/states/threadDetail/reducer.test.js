@@ -1,3 +1,70 @@
+/**
+ * Test Scenario
+ *
+ * - threadDetailReducer:
+ *   1. Should return null when no action is provided and initial state is undefined
+ *      - Act: Call reducer with undefined state and empty action
+ *      - Assert: Verify null is returned
+ *
+ *   2. Thread detail fetching:
+ *      - Should handle GET_THREAD_DETAIL action with thread in payload
+ *        - Arrange: Create thread detail data
+ *        - Act: Call reducer with GET_THREAD_DETAIL action
+ *        - Assert: Verify state contains thread detail
+ *
+ *   3. Thread voting:
+ *      - Should handle UP_VOTE_THREAD action when user has not voted
+ *        - Arrange: Set up thread detail with user not in upVotesBy
+ *        - Act: Call reducer with UP_VOTE_THREAD action
+ *        - Assert: Verify user added to upVotesBy
+ *
+ *      - Should handle UP_VOTE_THREAD action when user has downvoted
+ *        - Arrange: Set up thread detail with user in downVotesBy
+ *        - Act: Call reducer with UP_VOTE_THREAD action
+ *        - Assert: Verify user removed from downVotesBy and added to upVotesBy
+ *
+ *      - Should handle DOWN_VOTE_THREAD action when user has not voted
+ *        - Arrange: Set up thread detail with user not in downVotesBy
+ *        - Act: Call reducer with DOWN_VOTE_THREAD action
+ *        - Assert: Verify user added to downVotesBy
+ *
+ *      - Should handle DOWN_VOTE_THREAD action when user has upvoted
+ *        - Arrange: Set up thread detail with user in upVotesBy
+ *        - Act: Call reducer with DOWN_VOTE_THREAD action
+ *        - Assert: Verify user removed from upVotesBy and added to downVotesBy
+ *
+ *      - Should handle NEUTRAL_VOTE_THREAD action when user has upvoted
+ *        - Arrange: Set up thread detail with user in upVotesBy
+ *        - Act: Call reducer with NEUTRAL_VOTE_THREAD action
+ *        - Assert: Verify user removed from upVotesBy
+ *
+ *      - Should handle NEUTRAL_VOTE_THREAD action when user has downvoted
+ *        - Arrange: Set up thread detail with user in downVotesBy
+ *        - Act: Call reducer with NEUTRAL_VOTE_THREAD action
+ *        - Assert: Verify user removed from downVotesBy
+ *
+ *   4. Comment operations:
+ *      - Should handle CREATE_COMMENT action
+ *        - Arrange: Set up thread detail with comments
+ *        - Act: Call reducer with CREATE_COMMENT action containing new comment
+ *        - Assert: Verify new comment added to comments array
+ *
+ *      - Should handle UP_VOTE_COMMENT action for existing comment
+ *        - Arrange: Set up thread detail with comments
+ *        - Act: Call reducer with UP_VOTE_COMMENT action
+ *        - Assert: Verify upvote added to correct comment
+ *
+ *      - Should handle DOWN_VOTE_COMMENT action for existing comment
+ *        - Arrange: Set up thread detail with comments
+ *        - Act: Call reducer with DOWN_VOTE_COMMENT action
+ *        - Assert: Verify downvote added to correct comment
+ *
+ *      - Should handle NEUTRAL_VOTE_COMMENT action for existing comment
+ *        - Arrange: Set up thread detail with comments
+ *        - Act: Call reducer with NEUTRAL_VOTE_COMMENT action
+ *        - Assert: Verify vote removed from correct comment
+ */
+
 import { describe, test, expect } from 'vitest';
 import threadDetailReducer from './reducer';
 import { ActionType } from './action';

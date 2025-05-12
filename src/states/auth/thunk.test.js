@@ -1,3 +1,50 @@
+/**
+ * Test Scenario
+ *
+ * - asyncRegisterUser:
+ *   1. Should dispatch actions correctly when registration succeeds
+ *      - Arrange: Prepare user data and mock successful API response
+ *      - Act: Call asyncRegisterUser with user data
+ *      - Assert: Verify showLoading and hideLoading called, API called with correct data, and returns user object
+ *
+ *   2. Should dispatch error action when registration fails
+ *      - Arrange: Prepare user data and mock API rejection
+ *      - Act: Call asyncRegisterUser with user data
+ *      - Assert: Verify error action dispatched and error thrown
+ *
+ * - asyncLoginUser:
+ *   3. Should dispatch actions correctly when login succeeds
+ *      - Arrange: Prepare login data and mock successful API responses
+ *      - Act: Call asyncLoginUser with credentials
+ *      - Assert: Verify API calls, token storage, user state updated
+ *
+ *   4. Should dispatch error action when login fails
+ *      - Arrange: Prepare login data and mock API rejection
+ *      - Act: Call asyncLoginUser with credentials
+ *      - Assert: Verify error action dispatched and error thrown
+ *
+ * - asyncLogoutUser:
+ *   5. Should dispatch actions correctly during logout
+ *      - Act: Call asyncLogoutUser
+ *      - Assert: Verify user state reset, token cleared, localStorage item removed
+ *
+ * - asyncCheckAuthUser:
+ *   6. Should return user and dispatch setAuthUser when token is valid
+ *      - Arrange: Mock valid token and user profile
+ *      - Act: Call asyncCheckAuthUser
+ *      - Assert: Verify user state set with correct data
+ *
+ *   7. Should dispatch unsetAuthUser when no token exists
+ *      - Arrange: Mock empty access token
+ *      - Act: Call asyncCheckAuthUser
+ *      - Assert: Verify auth user unset and null returned
+ *
+ *   8. Should handle error during profile fetch with invalid token
+ *      - Arrange: Mock token but failed profile fetch
+ *      - Act: Call asyncCheckAuthUser
+ *      - Assert: Verify token cleared, user state reset, and error thrown
+ */
+
 import { describe, test, expect, vi, beforeEach } from 'vitest';
 import {
   asyncRegisterUser,

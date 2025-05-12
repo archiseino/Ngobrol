@@ -1,3 +1,38 @@
+/**
+ * Test Scenario
+ *
+ * - Threads actions:
+ *   1. receiveThreads:
+ *      - Should create an action to receive threads
+ *        - Arrange: Create sample threads data
+ *        - Act: Call receiveThreads with threads data
+ *        - Assert: Verify correct action type and payload
+ *
+ *   2. addThread:
+ *      - Should create an action to add a thread
+ *        - Arrange: Create a sample thread
+ *        - Act: Call addThread with thread data
+ *        - Assert: Verify correct action type and payload
+ *
+ *   3. toggleUpVote:
+ *      - Should create an action to toggle upvote on a thread
+ *        - Arrange: Prepare thread ID and user ID
+ *        - Act: Call toggleUpVote with IDs
+ *        - Assert: Verify correct action type and payload
+ *
+ *   4. toggleDownVote:
+ *      - Should create an action to toggle downvote on a thread
+ *        - Arrange: Prepare thread ID and user ID
+ *        - Act: Call toggleDownVote with IDs
+ *        - Assert: Verify correct action type and payload
+ *
+ *   5. toggleNeutralVote:
+ *      - Should create an action to neutralize vote on a thread
+ *        - Arrange: Prepare thread ID and user ID
+ *        - Act: Call toggleNeutralVote with IDs
+ *        - Assert: Verify correct action type and payload
+ */
+
 import { describe, test, expect } from 'vitest';
 import {
   ActionType,

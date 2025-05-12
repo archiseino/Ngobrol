@@ -1,3 +1,23 @@
+/**
+ * Test Scenario
+ *
+ * - asyncPreloadProcess thunk:
+ *   1. Should authenticate user when valid token exists
+ *      - Arrange: Mock valid token and successful profile fetch
+ *      - Act: Call asyncPreloadProcess thunk
+ *      - Assert: Verify loading actions, user authenticated, and preload state set to false
+ *
+ *   2. Should handle no token available
+ *      - Arrange: Mock no token available
+ *      - Act: Call asyncPreloadProcess thunk
+ *      - Assert: Verify preload state set to false
+ *
+ *   3. Should handle token validation failure
+ *      - Arrange: Mock token exists but profile fetch fails
+ *      - Act: Call asyncPreloadProcess thunk
+ *      - Assert: Verify token cleared and preload state set to false
+ */
+
 import { describe, test, expect, vi, beforeEach } from 'vitest';
 import { asyncPreloadProcess } from './thunk';
 import api from '../../utils/api';
@@ -11,7 +31,7 @@ vi.mock('../../utils/api', () => ({
     getAccessToken: vi.fn(),
     getProfile: vi.fn(),
     putAccessToken: vi.fn(),
-  }
+  },
 }));
 
 vi.mock('react-redux-loading-bar', () => ({
@@ -45,7 +65,7 @@ describe('Preload thunks', () => {
         name: 'John Doe',
         email: 'john@example.com',
       };
-      
+
       api.getAccessToken.mockReturnValue(token);
       api.getProfile.mockResolvedValue(userProfile);
 
@@ -66,13 +86,15 @@ describe('Preload thunks', () => {
       // Arrange
       const token = 'invalid-token';
       const error = new Error('Invalid token');
-      
+
       api.getAccessToken.mockReturnValue(token);
       api.getProfile.mockRejectedValue(error);
 
       // Act and Assert
-      await expect(asyncPreloadProcess()(dispatch)).rejects.toThrow('Invalid token');
-      
+      await expect(asyncPreloadProcess()(dispatch)).rejects.toThrow(
+        'Invalid token'
+      );
+
       expect(dispatch).toHaveBeenCalledWith(showLoading());
       expect(api.getAccessToken).toHaveBeenCalled();
       expect(api.getProfile).toHaveBeenCalled();
@@ -101,11 +123,15 @@ describe('Preload thunks', () => {
     test('should always set preload to false even when unexpected errors occur', async () => {
       // Arrange
       const unexpectedError = new Error('Unexpected error');
-      api.getAccessToken.mockImplementation(() => { throw unexpectedError; });
+      api.getAccessToken.mockImplementation(() => {
+        throw unexpectedError;
+      });
 
       // Act and Assert
-      await expect(asyncPreloadProcess()(dispatch)).rejects.toThrow('Invalid token');
-      
+      await expect(asyncPreloadProcess()(dispatch)).rejects.toThrow(
+        'Invalid token'
+      );
+
       expect(dispatch).toHaveBeenCalledWith(showLoading());
       expect(dispatch).toHaveBeenCalledWith(setAuthUser(null));
       expect(dispatch).toHaveBeenCalledWith(setPreload(false));

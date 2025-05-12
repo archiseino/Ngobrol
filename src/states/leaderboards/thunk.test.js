@@ -1,3 +1,18 @@
+/**
+ * Test Scenario
+ *
+ * - asycnGetAllLeaderboards thunk:
+ *   1. Should dispatch action and return leaderboards when API call succeeds
+ *      - Arrange: Mock successful API response and prepare dispatch function
+ *      - Act: Call the thunk function
+ *      - Assert: Verify API called, action dispatched with correct data, and leaderboards returned
+ *
+ *   2. Should handle errors when API call fails
+ *      - Arrange: Mock API rejection and prepare dispatch function
+ *      - Act: Call the thunk function
+ *      - Assert: Verify error handling (alert called) and null returned
+ */
+
 import { describe, test, expect, vi, beforeEach, afterAll } from 'vitest';
 import { asycnGetAllLeaderboards } from './thunk';
 import api from '../../utils/api';

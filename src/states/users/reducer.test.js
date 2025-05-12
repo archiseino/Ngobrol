@@ -1,3 +1,18 @@
+/**
+ * Test Scenario
+ *
+ * - usersReducer:
+ *   1. Should return the initial state when no action is provided
+ *      - Arrange: Expect initial state to be empty array
+ *      - Act: Call reducer with undefined state and empty action
+ *      - Assert: Verify empty array is returned
+ *
+ *   2. Should handle RECEIVE_USERS action correctly
+ *      - Arrange: Create sample users and initial state
+ *      - Act: Call reducer with RECEIVE_USERS action
+ *      - Assert: Verify users are stored in state
+ */
+
 import { describe, test, expect } from 'vitest';
 import usersReducer from './reducer';
 import { ActionType } from './action';
